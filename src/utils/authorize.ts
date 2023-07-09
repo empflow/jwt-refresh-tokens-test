@@ -13,6 +13,9 @@ export default function authorize(req: Request, res: Response, next: NextFunctio
   const secretKey = getEnvVar("JWT_ACCESS_TOKEN_SECRET");
   try {
     const payload = jwt.verify(token, secretKey);
+    if (typeof payload === "string") {
+      return res.status(401).send("invalid access token");
+    }
     res.locals.payload = payload;
     next();
   } catch (err) {
