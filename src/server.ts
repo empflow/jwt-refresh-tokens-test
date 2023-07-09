@@ -20,7 +20,10 @@ const posts = [
 app.use(express.json());
 
 app.get("/posts", authorize, (req, res) => {
-  res.status(200).json(posts);
+  const { name } = res.locals.payload;
+  const postsByUser = posts.filter(post => post.username === name);
+  if (!postsByUser.length) return res.status(404).json(postsByUser);
+  res.status(200).json(postsByUser);
 })
 
 app.post("/login", (req, res) => {
