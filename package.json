@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev ./src/server.ts",
-    "dev2": "ts-node-dev ./src/server2.ts",
+    "devMain": "NODE_ENV=development ts-node-dev ./src/mainServer.ts",
+    "devAuth": "NODE_ENV=development ts-node-dev ./src/authServer.ts",
     "build": "tsc -p ./tsconfig.json",
-    "start": "node ./dist/server.js"
+    "startMain": "NODE_ENV=production node ./dist/mainServer.js",
+    "startAuth": "NODE_ENV=production node ./dist/authServer.js"
   },
   "keywords": [],
   "author": "",

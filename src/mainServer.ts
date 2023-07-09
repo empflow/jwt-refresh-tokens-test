@@ -2,8 +2,6 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 const app = express();
-import jwt from "jsonwebtoken";
-import getEnvVar from "./utils/getEnvVar";
 import authorize from "./utils/authorize";
 import { Post } from "./utils/types";
 
@@ -40,14 +38,6 @@ app.post("/posts", authorize, (req, res) => {
   res.status(201).send("post created successfully");
 })
 
-app.post("/login", (req, res) => {
-  // assuming the user is authenticated
-  const { name } = req.body;
-  const user = { name };
-  const token = jwt.sign(user, getEnvVar("JWT_ACCESS_TOKEN_SECRET"));
-  res.status(200).json({ token });
-})
-
-app.listen(3001, () => {
-  console.log("listening on port 3001");
+app.listen(3000, () => {
+  console.log("listening on port 3000");
 })
