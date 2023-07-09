@@ -16,6 +16,7 @@ export default function authorize(req: Request, res: Response, next: NextFunctio
     if (typeof payload === "string") {
       return res.status(401).send("invalid access token");
     }
+
     res.locals.payload = payload;
     next();
   } catch (err) {

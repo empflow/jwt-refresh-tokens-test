@@ -4,6 +4,7 @@ import express from "express";
 const app = express();
 import authorize from "./utils/authorize";
 import { Post } from "./utils/types";
+const PORT = 3000;
 
 const posts: Post[] = [
   {
@@ -38,6 +39,6 @@ app.post("/posts", authorize, (req, res) => {
   res.status(201).send("post created successfully");
 })
 
-app.listen(3000, () => {
-  console.log("listening on port 3000");
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 })
